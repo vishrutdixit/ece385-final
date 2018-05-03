@@ -1,0 +1,6 @@
+17:10:09 **** Clean-only build of configuration Nios II for project tetris_bsp ****
+make clean 
+[BSP clean complete]
+
+17:10:10 Build Finished (took 1s.547ms)
+

@@ -1,0 +1,6 @@
+17:28:25 **** Build of configuration Nios II for project tetris ****
+make all 
+make: *** No rule to make target `all'.  Stop.
+
+17:28:25 Build Finished (took 160ms)
+

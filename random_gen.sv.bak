@@ -1,0 +1,23 @@
+module random_gen(
+  input  clk,
+  input  rst_n,
+
+  output [11:0] data
+);
+
+wire feedback = data[11]^data[5]^data[3]^data[0];
+logic [11:0] data_internal;
+
+
+always @(posedge clk or negedge rst_n)
+begin
+  if (~rst_n) 
+    data_internal <= 12'hfff;
+  else
+    data_internal <= {data[10:0], feedback};
+end
+
+assign data = data_internal;
+
+
+endmodule

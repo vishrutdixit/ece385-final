@@ -1,0 +1,49 @@
+module Tetris_Control (input logic Clk, Reset, output logic is_menu);
+
+	enum logic [1:0] { Menu, Game, Gameover }   State, Next_state;   // Internal state logic
+	logic is_menu_in;
+	always_ff @ (posedge Clk)
+	begin
+			if(Reset)
+			begin
+				State <= Menu;
+				is_menu <= 1;
+			end
+			else
+			begin
+				State <= Next_state;
+				is_menu <= is_menu_in;
+			end
+	end
+   
+	always_comb
+	begin 
+		Next_state = State;
+		is_menu_in = is_menu;
+		unique case(Next_state)
+		Menu:begin
+			Next_state = Game;
+			end
+		Game:begin
+			if(game_over==1)
+				Next_state = Gameover;
+			else
+				Next_state = Game;
+			end
+		Gameover:begin
+		Next_state = Menu;
+		end
+		default:;
+		endcase
+		
+		case(Next_state)
+		Menu:
+		is_menu_in = 1;
+		
+		endcase
+		
+	end 
+
+
+	
+endmodule
